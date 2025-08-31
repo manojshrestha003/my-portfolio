@@ -66,36 +66,48 @@ body {
   }
 
   
-  @media (max-width: 768px) {
-    .toggle-icon {
-      display: block;
-    }
-
-    .navbar ul {
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(65,65,110,1) 35%, rgba(0,212,255,1) 100%);
-      display: none;
-    }
-
-    .navbar ul.show {
-      display: flex;
-    }
-
-    .navbar ul li {
-      width: 100%;
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    .navbar ul li a {
-      transition: color 0.3s ease; /* Add transition only for hover effect */
-    }
-
+@media (max-width: 768px) {
+  .toggle-icon {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 1100;
   }
+
+  .navbar ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(24, 24, 32, 0.97); 
+    display: none;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+
+  .navbar ul.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navbar ul li {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .navbar ul li a {
+    transition: color 0.3s ease;
+  }
+}
 
 /*Home page*/
   
@@ -184,12 +196,16 @@ body {
       padding: 10px 25px;
     }
     .home-image {
-      margin-bottom: 30px;
-    }
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+  }
     .home-image img {
-      border-radius: 15px;
-      
-    }
+    width: 60vw;
+    max-width: 300px;
+    border-radius: 18%;
+  }
   }
 
   @media (max-width: 600px) {
@@ -203,6 +219,18 @@ body {
       font-size: 0.9rem;
       padding: 8px 20px;
     }
+      .home-image {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  .home-image img {
+    width: 70vw;
+    max-width: 220px;
+    border-radius: 16%;
+    margin: 0 auto;
+  }
   }
 
 

@@ -50,3 +50,8 @@ const form = document.getElementById('contactForm');
       statusDiv.textContent = "Oops! Network error. Please try again later.";
     }
   });
+
+
+
+
+  

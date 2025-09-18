@@ -52,43 +52,61 @@ const form = document.getElementById('contactForm');
   });
 
 
-  const typingText = document.getElementById('typing-text');
-const typingStrings = [
-   "An Aspiring Full Stack Developer",
-   "Mern Stack",
-   "ASP.NET Core"
-   
-];
-let typingIdx = 0;
-let stringIdx = 0;
-let isDeleting = false;
+  function typeWriter({
+  elementId,
+  strings,
+  typingSpeed = 100,
+  deletingSpeed = 60,
+  delayBetween = 1000
+}) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
 
-function typeWriter() {
-  const currentString = typingStrings[stringIdx];
+  let stringIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
 
-  if (!isDeleting && typingIdx === 0) typingText.textContent = "";
+  function tick() {
+    const currentString = strings[stringIdx];
 
-  if (!isDeleting && typingIdx < currentString.length) {
-    typingText.textContent += currentString.charAt(typingIdx);
-    typingIdx++;
-    setTimeout(typeWriter, 110);
-  } else if (isDeleting && typingIdx > 0) {
-    typingText.textContent = currentString.substring(0, typingIdx - 1);
-    typingIdx--;
-    setTimeout(typeWriter, 60);
-  } else {
     if (!isDeleting) {
-      isDeleting = true;
-      setTimeout(typeWriter, 1200); 
+      el.textContent = currentString.substring(0, charIdx + 1);
+      charIdx++;
+
+      if (charIdx === currentString.length) {
+        isDeleting = true;
+        setTimeout(tick, delayBetween);
+        return;
+      }
     } else {
-      isDeleting = false;
-      stringIdx = (stringIdx + 1) % typingStrings.length;
-      setTimeout(typeWriter, 400); 
+      el.textContent = currentString.substring(0, charIdx - 1);
+      charIdx--;
+
+      if (charIdx === 0) {
+        isDeleting = false;
+        stringIdx = (stringIdx + 1) % strings.length;
+      }
     }
+
+    setTimeout(tick, isDeleting ? deletingSpeed : typingSpeed);
   }
+
+  tick();
 }
 
-window.addEventListener('DOMContentLoaded', typeWriter);
+window.addEventListener("DOMContentLoaded", () => {
+  typeWriter({
+    elementId: "typing-text",
+    strings: [
+      "An Aspiring Full Stack Developer",
+      "MERN Stack",
+      "ASP.NET Core"
+    ],
+    typingSpeed: 120,
+    deletingSpeed: 60,
+    delayBetween: 1200
+  });
+});
 
 
 

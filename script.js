@@ -52,6 +52,21 @@ const form = document.getElementById('contactForm');
   });
 
 
+  const typingText = document.getElementById('typing-text');
+const typingString = " Full‑Stack Developer";
+let typingIdx = 0;
+
+function typeWriter() {
+  if (typingIdx === 0) typingText.textContent = ""; 
+  if (typingIdx < typingString.length) {
+    typingText.textContent += typingString.charAt(typingIdx);
+    typingIdx++;
+    setTimeout(typeWriter, 110); // Slightly slower for smoothness
+  }
+}
+window.addEventListener('DOMContentLoaded', typeWriter);
+
+
 
 
   

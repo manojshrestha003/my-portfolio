@@ -365,10 +365,10 @@ body {
 }
 
 #about header p {
-  font-size: 1.18rem;
+  font-size: 1rem;
   color: #e0e0e0;
   margin: 0 auto 18px auto;
-  max-width: 600px;
+  max-width: 900px;
   line-height: 1.7;
 }
 

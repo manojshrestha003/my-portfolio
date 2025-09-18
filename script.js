@@ -53,19 +53,42 @@ const form = document.getElementById('contactForm');
 
 
   const typingText = document.getElementById('typing-text');
-const typingString = " Full‑Stack Developer";
+const typingStrings = [
+   "An Aspiring Full Stack Developer",
+   "Mern Stack",
+   "ASP.NET Core"
+   
+];
 let typingIdx = 0;
+let stringIdx = 0;
+let isDeleting = false;
 
 function typeWriter() {
-  if (typingIdx === 0) typingText.textContent = ""; 
-  if (typingIdx < typingString.length) {
-    typingText.textContent += typingString.charAt(typingIdx);
+  const currentString = typingStrings[stringIdx];
+
+  if (!isDeleting && typingIdx === 0) typingText.textContent = "";
+
+  if (!isDeleting && typingIdx < currentString.length) {
+    typingText.textContent += currentString.charAt(typingIdx);
     typingIdx++;
-    setTimeout(typeWriter, 110); // Slightly slower for smoothness
+    setTimeout(typeWriter, 110);
+  } else if (isDeleting && typingIdx > 0) {
+    typingText.textContent = currentString.substring(0, typingIdx - 1);
+    typingIdx--;
+    setTimeout(typeWriter, 60);
+  } else {
+    if (!isDeleting) {
+      isDeleting = true;
+      setTimeout(typeWriter, 1200); 
+    } else {
+      isDeleting = false;
+      stringIdx = (stringIdx + 1) % typingStrings.length;
+      setTimeout(typeWriter, 400); 
+    }
   }
 }
-window.addEventListener('DOMContentLoaded', typeWriter);
 
+window.addEventListener('DOMContentLoaded', typeWriter);
 
 
 

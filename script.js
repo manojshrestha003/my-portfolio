@@ -6,53 +6,53 @@ toggleIcon.addEventListener('click', () => {
 });
 
 document.querySelectorAll('nav ul li a ').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-      e.preventDefault();
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
 
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
 
-      if (targetElement) {
-          targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-          });
-      }
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
   });
 });
 
 const form = document.getElementById('contactForm');
-  const statusDiv = document.getElementById('formStatus');
+const statusDiv = document.getElementById('formStatus');
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    const formData = new FormData(form);
+  const formData = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
 
-      if (response.ok) {
-        statusDiv.style.color = 'white';
-        statusDiv.textContent = "Thank you!  Message has been sent successfully.";
-        form.reset();
-      } else {
-        const data = await response.json();
-        statusDiv.style.color = 'red';
-        statusDiv.textContent = data?.error || "Oops! Something went wrong.";
-      }
-    } catch (error) {
+    if (response.ok) {
+      statusDiv.style.color = 'white';
+      statusDiv.textContent = "Thank you!  Message has been sent successfully.";
+      form.reset();
+    } else {
+      const data = await response.json();
       statusDiv.style.color = 'red';
-      statusDiv.textContent = "Oops! Network error. Please try again later.";
+      statusDiv.textContent = data?.error || "Oops! Something went wrong.";
     }
-  });
+  } catch (error) {
+    statusDiv.style.color = 'red';
+    statusDiv.textContent = "Oops! Network error. Please try again later.";
+  }
+});
 
 
-  function typeWriter({
+function typeWriter({
   elementId,
   strings,
   typingSpeed = 100,
@@ -98,9 +98,10 @@ window.addEventListener("DOMContentLoaded", () => {
   typeWriter({
     elementId: "typing-text",
     strings: [
-      "An Aspiring Full Stack Developer",
-      "MERN Stack",
-      "ASP.NET Core"
+      "A Full Stack Software Developer",
+      "React.js, Next.js",
+      "Node.js, Express.js",
+
     ],
     typingSpeed: 120,
     deletingSpeed: 60,
@@ -110,4 +111,3 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-  

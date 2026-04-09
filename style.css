@@ -409,7 +409,7 @@ body {
 }
 
 #about {
-  padding: 10%;
+  padding: 20px 10%;
   background: var(--bg-darker);
   position: relative;
 }
@@ -495,7 +495,7 @@ body {
 /*Education section*/
 
 #education {
-  padding: 100px 10%;
+  padding: 10px 10%;
   background: var(--bg-dark);
 }
 
@@ -598,7 +598,7 @@ body {
 /* Experience Section */
 
 #experience {
-  padding: 100px 10%;
+  padding: 10px 10%;
   background: var(--bg-darker);
 }
 
@@ -817,7 +817,7 @@ body {
 /*Projects Portion*/
 
 #projects {
-  padding: 100px 10%;
+  padding: 10px 10%;
   background: var(--bg-darker);
 }
 
@@ -1005,7 +1005,7 @@ body {
 
 /* Contact Details */
 #contact {
-  padding: 100px 10%;
+  padding: 10px 10%;
   background: var(--bg-darker);
 }
 
